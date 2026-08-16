@@ -19,7 +19,8 @@ function generateAdminID(length = 8) {
 }
 var nodemailer = require('nodemailer');
 
-const transporter = nodemailer.createTransport({
+const emailEnabled = Boolean(process.env.EMAIL_USER && process.env.EMAIL_APP_PASSWORD);
+const transporter = emailEnabled ? nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
@@ -27,10 +28,15 @@ const transporter = nodemailer.createTransport({
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_APP_PASSWORD
     }
-});
+}) : null;
+
 async function sendEmail(email, subject, body) {
+    if (!emailEnabled) {
+        console.log(`[email disabled] would send "${subject}" to ${email}`);
+        return null;
+    }
     const info = await transporter.sendMail({
-        from: `"SDA" hospitalmanagement327@gmail.com`,
+        from: `"Clinical Rotation Management" <${process.env.EMAIL_USER}>`,
         to: email,
         subject: subject,
         html: body,

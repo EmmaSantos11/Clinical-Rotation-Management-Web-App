@@ -18,9 +18,12 @@ and university admins.
 ```
 cd Backend
 npm install
-cp .env.example .env   # fill in MONGO_URI, EMAIL_USER, EMAIL_APP_PASSWORD
+cp .env.example .env   # fill in MONGO_URI (required); EMAIL_USER/EMAIL_APP_PASSWORD are optional
 npm start
 ```
+
+Signup emails are optional — if `EMAIL_USER`/`EMAIL_APP_PASSWORD` aren't set, the
+app logs what it would have sent instead of emailing.
 
 **Frontend**
 ```
