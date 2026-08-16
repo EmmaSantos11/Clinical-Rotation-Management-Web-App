@@ -5,8 +5,6 @@ const PORT = process.env.PORT || 8080;
 const cors = require("cors")
 const path = require('path')
 const route = require('./routes/route');
-// const MongoDB = require("./db/db");
-// MongoDB()
 
 app.enable('trust proxy')
 app.use(cors());

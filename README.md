@@ -34,12 +34,19 @@ npm start
 
 ## Note
 
-This repo was reorganized from its original state (committed `node_modules/`,
+This repo was reorganized from its original state: committed `node_modules/`,
 zipped source archives, and two empty unused `create-react-app` scaffolds were
-removed; `package.json` was moved to sit beside `FrontEnd/src`). The frontend
-build hasn't been re-verified end-to-end after the reorg — if `npm start` fails,
-check `FrontEnd/dist/bundle.js` for signs of a webpack setup that predates the
-`react-scripts` dependency in `package.json`.
+removed; `package.json` was moved to sit beside `FrontEnd/src` and filled in
+with its actual dependencies (`react`, `react-router-dom`, `web-vitals`, etc.
+were missing entirely). Verified end-to-end against a real MongoDB Atlas
+cluster: signup, password hashing, login, and the production build all work.
+Deploy by running `npm run build` in `FrontEnd/` and copying the `build/`
+folder into `Backend/build/` — the backend serves it directly as a single
+service.
+
+`FrontEnd/public/index.html` and `manifest.json` also had leftover branding
+from an unrelated project (a prop-trading-firm template, plus a stray
+"cryptomus" verification tag) — removed.
 
 ## Security note
 
